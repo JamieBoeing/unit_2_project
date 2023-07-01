@@ -103,5 +103,5 @@ Before starting, make sure you have the following installed on your machine:
         ECONNREFUSED: 200
 
  
-## Future Updates 
+## Improvements 
  In the future an addition of a front-end user "view" for the application will be added. Then the space where the user can add notes, photos, and share their recipes through other social networks will be linked, as well as a shopping cart for items needed to complete the recipes. Possibly an AI assistant will be added to help order needed items ahead of time for planned meals, and a calendar section. This calendar could be linked to family, and friends to share, update, and collect recipes. Rewards, tokens, and NFT's for possible expansions in the future. 
