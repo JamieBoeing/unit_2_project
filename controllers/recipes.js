@@ -6,7 +6,7 @@ exports.createRecipe = async (req, res) => {
     try {
         const recipe = new Recipe(req.body)
         await recipe.save()
-        res.json({ recipe })
+        res.json(recipe)
     } catch (error) {
         res.status(400).json({ message: error.message })
     }
