@@ -1,0 +1,23 @@
+config:
+  target: 'http://localhost:3000'
+  phases: 
+    - duration: 60
+      arrivalRate: 20
+scenarios:
+  - name: "Create Recipe"
+  - flow:
+    - post:
+        url: "/recipes"        
+        json: 
+          title: "Testing a recipe"
+          description: "Testing a recipe"
+          completed: false
+
+  - name: "Get Users"
+  - flow:
+    - get:
+        url: "/users"     
+        json: 
+          title: "Testing Users"
+          description: "Testing a User"
+          completed: false
