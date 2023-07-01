@@ -1,14 +1,15 @@
 # Title- Recipe's API 
     This is an API for managing recipes using Mongoose, and Express
+
 ## Table of contents
 1. [#summary](#summary)
 2. [#prerequisites](#prerequisites)
 3. [#installation](#installation)
-4. [#usage]()
-5. [#configuration]()
-6. [#api-documentation]()
+4. [#usage](#usage)
+5. [#configuration](#usage)
+6. [#api-documentation](#api-documentation)
 7. [#testing](#testing)
-8. [#improvements]()
+8. [#improvements](#improvements)
 
 ## Summary 
 
@@ -17,23 +18,27 @@
 Before starting, make sure you have the following installed on your machine: 
     - [Node.js]: you can download and install from the official website: (https://nodejs.org)
     - MongoDB: you can download and install [MongoDB] from the official website: (https://wwww.mongodb.com)
+
 ## Installation 
     To install and run this application on your local machine you can follow these instructions step-by-step
 
 1. Clone the repsoitory
-    gh repo clone JamieBoeing/unit_2_project
+        gh repo clone JamieBoeing/unit_2_project
 
 2. in the CMD line of your terminal paste the clone code
-3. cd - into recipes
+3.  $ cd - into recipes
 4. npm install 
 4. create a new file named .env in the root directory and add the following:    
-   - mongodb+srv://username:<password>@cluster0.dtaf30w.mongodb.net/?retryWrites=true&w=majorityPORT=3000
+    mongodb+srv://username:<password>@cluster0.dtaf30w.mongodb.net/?retryWrites=true&w=majorityPORT=3000
 
  add your private password from mongoDB to a appropriate place <password>, and being careful not to add any special characters
  npm run dev- to start the app in the cmd line
  Postman-Dev free option
  To run this app locally instead of using the dev option you can use an application called postman to check the information coming and going from the server.
-
+ 
+## Usage
+## Configuration
+## API-Documentation
 
 
 ## Testing
