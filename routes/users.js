@@ -11,14 +11,13 @@ router.post('/', userController.auth, userController.createUser)
 router.post('/login', userController.auth, userController.logInUser)
 
 // POST logoutUser
-router.post('/logout', userController.auth, userController.logoutUser)
+router.post('/logout', userController.auth, userController.logOutUser)
 
 // PUT updateUser
 router.put('/:id', userController.auth, userController.updateUser)
 
 // DELETE deleteUser
 router.delete('/:id', userController.auth, userController.deleteUser)
-
 
 // GET showUser
 router.get('/:id', userController.auth, userController.showUser)

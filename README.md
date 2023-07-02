@@ -1,5 +1,5 @@
 # Title- Recipe's API 
-    This is an API for managing recipes using Mongoose, and Express
+    
 
 ## Table of contents
 1. [#introduction](#introduction)
@@ -12,7 +12,7 @@
 8. [#improvements](#improvements)
 
 ## Introduction 
-This is an app that has 
+    This is an API for managing recipes using Mongoose, and Express
 
 ## Prerequisites 
 Before starting, make sure you have the following installed on your machine: 
@@ -29,7 +29,7 @@ To install and run this application on your local machine you can follow these i
     4. Press Enter 
     5. cd into the project directory
     6. run 
-        - npm install --save-dev jest supertest mongodb-memory-server artillery@1.7.9 bcrypt dotenv jsonwebtoken mongoose express morgan
+        - npm install
     7. Create a new file named .env in the root directory of the project
     8. Open the .env file in vs code or text editor
     9. Add the following to the .env
@@ -42,11 +42,76 @@ To install and run this application on your local machine you can follow these i
 
     11. type the following into the command line to start on local host 3000
         - npm run dev
-        
+
     The api will be available at http://localhost:3000   
 
 ## Usage
-## Configuration
+### User Controllers
+#### CreateUser
+
+    CreateUser-'POST/'
+        description: creates a new user 
+            {
+                "name": 'New User',
+                "username": 'Username',
+                "email": 'email@example.com',
+                "password": 'password'
+            }
+
+#### logInUser
+
+    logInUser-'POST/login'
+        description: logs in a user 
+            {
+                "email": 'email@example.com',
+                "password": 'password'
+            }
+
+#### logOutUser
+
+    logOutUser-'POST/logout'
+        description: logs out a user 
+            {
+                "email": 'email@example.com',
+                "password": 'password'
+            }
+
+#### updateUser
+
+    updateUser-'PUT/:id'
+        description: updates a user 
+        {
+                "name": 'Upadated User',
+                "username": 'Username',
+                "email": 'email@example.com',
+                "password": 'password'
+            }
+
+#### deleteUser
+
+    deleteUser-'DELETE/:id'
+        description: deletes in a user 
+            {
+                "email": 'email@example.com',
+                "password": 'password'
+            }
+
+#### Recipe Controllers
+#### CreateRecipe
+
+    CreateRecipe-'POST/'
+        description: creates a new Recipe 
+            {
+                title: 'recipe name',
+                description: 'recipe description',
+                ingredients: 'ingredients',
+                user: user._id,
+                category: 'category',
+                instructions: 'instructions'
+            }
+
+
+## Routes
 ## API-Documentation
 
 
@@ -118,4 +183,4 @@ To install and run this application on your local machine you can follow these i
 
  
 ## Improvements 
- In the future an addition of a front-end user "view" for the application will be added. Then the space where the user can add notes, photos, and share their recipes through other social networks will be linked, as well as a shopping cart for items needed to complete the recipes. Possibly an AI assistant will be added to help order needed items ahead of time for planned meals, and a calendar section. This calendar could be linked to family, and friends to share, update, and collect recipes. Rewards, tokens, and NFT's for possible expansions in the future. 
+ In the future an addition of a front-end user "view" for the application will be added. An Option where the user can add notes, photos, and share their recipes through other social networks will be linked, as well as a shopping cart for items needed to complete the recipes. Possibly an AI assistant will be added to help order needed items ahead of time for planned meals, and a calendar section. This calendar could be linked to family, and friends to share, update, and collect recipes. Rewards, tokens, and NFT's for possible expansions in the future. 
