@@ -46,9 +46,8 @@ exports.logInUser = async (req, res) => {
         } catch (error) {
             res.status(400).json({ message: 'Hello' })
         } 
-
-    
 }
+
 exports.logoutUser = async (req, res) => {
     try {
         const token = req.header('Authorization').replace
@@ -56,6 +55,7 @@ exports.logoutUser = async (req, res) => {
         res.status(400).json({ message: error.message})
     }
 }
+
 exports.updateUser = async (req, res) => {
     try {
         const updates = Object.keys(req.body)
@@ -67,6 +67,7 @@ exports.updateUser = async (req, res) => {
         res.status(400).json({ message: error.message})
     }
 }
+
 exports.deleteUser = async (req, res) => {
     try {
         await req.user.deleteOne()
@@ -75,6 +76,7 @@ exports.deleteUser = async (req, res) => {
         res.status(400).json({ message: error.message})
     }
 }
+
 exports.showUser = async (req, res) => {
     try {
         const user = await User.findOne({ _id: req.params.id })
@@ -83,6 +85,7 @@ exports.showUser = async (req, res) => {
         res.status(400).json({ message: error.message})
     }
 }
+
 exports.showAllUsers = async (req, res) => {
     try {
         const showAllUsers = await User.find({ })

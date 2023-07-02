@@ -50,18 +50,7 @@ const callTokenUser = async () => {
 // POST create recipe (works)
     test('This endpoint should create a new recipe', async () => {
     let { user, token } = await callTokenUser()
-       //console.log('here?')
-    //    const user = new User ({ 
-    //     name: 'Jamie Boeing',
-    //     username: "JamiesUserName",
-    //     email: 'Jamies@email.com',
-    //     password: 'password123',
-    //     isLoggedIn: true
-    //    })
-    //    await user.save()
-    //    const token = await user.generateAuthToken()
-    //    console.log(token)
-        // what we wrote with Authur in class and using it to apply a function to the whole test to call upon
+   
         const response = await request(app)
             .post('/recipes')
             .send({
@@ -82,7 +71,7 @@ const callTokenUser = async () => {
             expect(response.body.recipe.instructions).toEqual('instructions')
     })
 
-// // // PUT update recipe (not working yet)
+// // // PUT update recipe (works)
     test('This endpoint should update a recipe', async () => {
        let { user, token } = await callTokenUser()
     

@@ -2,7 +2,7 @@
     This is an API for managing recipes using Mongoose, and Express
 
 ## Table of contents
-1. [#summary](#summary)
+1. [#introduction](#introduction)
 2. [#prerequisites](#prerequisites)
 3. [#installation](#installation)
 4. [#usage](#usage)
@@ -11,8 +11,8 @@
 7. [#testing](#testing)
 8. [#improvements](#improvements)
 
-## Summary 
-
+## Introduction 
+This is an app that has 
 
 ## Prerequisites 
 Before starting, make sure you have the following installed on your machine: 
@@ -20,22 +20,31 @@ Before starting, make sure you have the following installed on your machine:
     - MongoDB: you can download and install [MongoDB] from the official website: (https://wwww.mongodb.com)
 
 ## Installation 
-    To install and run this application on your local machine you can follow these instructions step-by-step
+To install and run this application on your local machine you can follow these instructions step-by-step
 
-1. Clone the repsoitory
-        gh repo clone JamieBoeing/unit_2_project
+    1. Open the terminal or command prompt
+    2. Navigate to the directory where you want to clone the repository
+    3. Type the following code into the command line 
+        - git clone https://github.com/JamieBoeing/unit_2_project.git
+    4. Press Enter 
+    5. cd into the project directory
+    6. run 
+        - npm install --save-dev jest supertest mongodb-memory-server artillery@1.7.9 bcrypt dotenv jsonwebtoken mongoose express morgan
+    7. Create a new file named .env in the root directory of the project
+    8. Open the .env file in vs code or text editor
+    9. Add the following to the .env
+        
+        - mongodb+srv://username:<password>@cluster0.dtaf30w.mongodb.net/?retryWrites=true&w=majority
 
-2. in the CMD line of your terminal paste the clone code
-3.  $ cd - into recipes
-4. npm install 
-4. create a new file named .env in the root directory and add the following:    
-    mongodb+srv://username:<password>@cluster0.dtaf30w.mongodb.net/?retryWrites=true&w=majorityPORT=3000
+        - SECRET_KEY=secret
 
- add your private password from mongoDB to a appropriate place <password>, and being careful not to add any special characters
- npm run dev- to start the app in the cmd line
- Postman-Dev free option
- To run this app locally instead of using the dev option you can use an application called postman to check the information coming and going from the server.
- 
+    10. replace <password> with the connection string for your MongoDB database.
+
+    11. type the following into the command line to start on local host 3000
+        - npm run dev
+        
+    The api will be available at http://localhost:3000   
+
 ## Usage
 ## Configuration
 ## API-Documentation

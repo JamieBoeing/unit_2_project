@@ -61,7 +61,7 @@ const callTokenUser = async () => {
         expect(response.body.user.email).toEqual('email@example.com')
     })
 
-// PUT update user (doesnt work)
+// PUT update user (works)
     test('This endpoint should update a user', async () => {
         let { token } = await callTokenUser()
 
