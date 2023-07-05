@@ -64,11 +64,11 @@ const callTokenUser = async () => {
             .set('Authorization', `Bearer ${token}`)
 
             expect(response.statusCode).toBe(200)
-            expect(response.body.recipe.title).toEqual('recipe name')
-            expect(response.body.recipe.description).toEqual('recipe description')
-            expect(response.body.recipe.ingredients).toEqual('ingredients')
-            expect(response.body.recipe.category).toEqual('category',)
-            expect(response.body.recipe.instructions).toEqual('instructions')
+            expect(response.body.title).toEqual('recipe name')
+            expect(response.body.description).toEqual('recipe description')
+            expect(response.body.ingredients).toEqual('ingredients')
+            expect(response.body.category).toEqual('category',)
+            expect(response.body.instructions).toEqual('instructions')
     })
 
 // // // PUT update recipe (works)

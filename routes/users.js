@@ -5,7 +5,7 @@ const userController =require('../controllers/users')
 
 
 // POST createUser
-router.post('/', userController.auth, userController.createUser)
+router.post('/', userController.createUser)
 
 // POST loginUser
 router.post('/login', userController.auth, userController.logInUser)

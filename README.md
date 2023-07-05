@@ -38,7 +38,7 @@ To install and run this application on your local machine you can follow these i
 
         - SECRET_KEY=secret
 
-    10. replace <password> with the connection string for your MongoDB database.
+    10. replace <password> with the connection string for your MongoDB database
 
     11. type the following into the command line to start on local host 3000
         - npm run dev

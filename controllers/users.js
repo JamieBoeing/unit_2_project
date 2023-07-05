@@ -48,7 +48,7 @@ exports.logInUser = async (req, res) => {
         } 
 }
 
-exports.logoutUser = async (req, res) => {
+exports.logOutUser = async (req, res) => {
     try {
         const token = req.header('Authorization').replace
     } catch(error) {
