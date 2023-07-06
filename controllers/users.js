@@ -22,7 +22,7 @@ exports.auth = async (req, res, next) => {
     }
 }
 
-//Postman tested 
+
 exports.createUser = async (req, res) => {
     try {
         const user = new User(req.body)
