@@ -60,6 +60,35 @@ const callTokenUser = async () => {
         expect(response.body.user.username).toEqual('Username')
         expect(response.body.user.email).toEqual('email@example.com')
     })
+// POST login user
+test('This endpoint should update a user', async () => {
+    let { token } = await callTokenUser()
+    
+    const response = await request(app)
+    .post('/users/login')
+    .send({
+            name: 'New User',
+            username: 'Username',
+            email: 'email@example.com',
+            password: 'password',
+            isLoggedIn: true
+    })
+    .set('Authorization', `Bearer ${token}`)
+    
+    expect(response.statusCode).toBe(200)
+    expect(response.body).toHaveProperty('token')
+})
+// POST logout user
+test('This endpoint should update a user', async () => {
+    let { token } = await callTokenUser()
+
+    const response = await request(app)
+    .post('/users/logout')
+    .set('Authorization', `Bearer ${token}`)
+
+    expect(response.status).toBe(200)
+    expect(response.body.message).toBe('Logout Successful')
+})
 
 // PUT update user (works)
     test('This endpoint should update a user', async () => {

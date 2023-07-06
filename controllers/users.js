@@ -22,6 +22,7 @@ exports.auth = async (req, res, next) => {
     }
 }
 
+//Postman tested 
 exports.createUser = async (req, res) => {
     try {
         const user = new User(req.body)
@@ -44,13 +45,14 @@ exports.logInUser = async (req, res) => {
             res.json({ user, token })
         }
         } catch (error) {
-            res.status(400).json({ message: 'Hello' })
+            res.status(400).json({ message: 'Hello, Welcome!' })
         } 
 }
 
 exports.logOutUser = async (req, res) => {
     try {
         const token = req.header('Authorization').replace
+        res.json ({  message: 'Logout Successful' })
     } catch(error) {
         res.status(400).json({ message: error.message})
     }

@@ -11,107 +11,195 @@
 7. [#testing](#testing)
 8. [#improvements](#improvements)
 
-## Introduction 
-    This is an API for managing recipes using Mongoose, and Express
+# Introduction 
+This is an API for managing recipes using Mongoose, and Express
 
-## Prerequisites 
+# Prerequisites 
 Before starting, make sure you have the following installed on your machine: 
-    - [Node.js]: you can download and install from the official website: (https://nodejs.org)
-    - MongoDB: you can download and install [MongoDB] from the official website: (https://wwww.mongodb.com)
+* [Node.js]: you can download and install from the official website: (https://nodejs.org)
+* MongoDB: you can download and install [MongoDB] from the official website: (https://wwww.mongodb.com)
 
-## Installation 
+# Installation 
 To install and run this application on your local machine you can follow these instructions step-by-step
 
-    1. Open the terminal or command prompt
-    2. Navigate to the directory where you want to clone the repository
-    3. Type the following code into the command line 
-        - git clone https://github.com/JamieBoeing/unit_2_project.git
-    4. Press Enter 
-    5. cd into the project directory
-    6. run 
-        - npm install
-    7. Create a new file named .env in the root directory of the project
-    8. Open the .env file in vs code or text editor
-    9. Add the following to the .env
+* Open the terminal or command prompt
+* Navigate to the directory where you want to clone the repository
+* Type the following code into the command line 
+        
+        git clone https://github.com/JamieBoeing/unit_2_project.git
+
+* Press Enter 
+* cd into the project directory
+
+        cd unit_2_project
+
+* run 
+
+        npm install
+
+* Create a new file named .env in the root directory of the project
+
+        touch .env
+        
+* Open the .env file in vs code or text editor
+* Add the following to the .env
         
         - mongodb+srv://username:<password>@cluster0.dtaf30w.mongodb.net/?retryWrites=true&w=majority
 
         - SECRET_KEY=secret
 
-    10. replace <password> with the connection string for your MongoDB database
+* replace <password> with the connection string for your MongoDB database
 
-    11. type the following into the command line to start on local host 3000
+* type the following into the command line to start on local host 3000
         - npm run dev
 
     The api will be available at http://localhost:3000   
 
-## Usage
-### User Controllers
-#### CreateUser
+# Usage
+## UserRoutes
+### CreateUser
+* Creates a new User 
+ description: creates a new user 
+    * URL:  '/users'
+    * method: POST
 
-    CreateUser-'POST/'
-        description: creates a new user 
+       
             {
                 "name": 'New User',
                 "username": 'Username',
                 "email": 'email@example.com',
                 "password": 'password'
             }
+### Response
+- **Success**: Returns the newly created user object.
+- **Error**: Returns an error message if the creation fails. 
 
-#### logInUser
-
-    logInUser-'POST/login'
-        description: logs in a user 
-            {
-                "email": 'email@example.com',
-                "password": 'password'
-            }
-
-#### logOutUser
-
-    logOutUser-'POST/logout'
-        description: logs out a user 
-            {
-                "email": 'email@example.com',
-                "password": 'password'
-            }
-
-#### updateUser
-
-    updateUser-'PUT/:id'
-        description: updates a user 
         {
-                "name": 'Upadated User',
-                "username": 'Username',
+            "user": {
+                "name": "name",
+                "username": "username", 
+                "email": "email@email.com",
+                "password": 'password',
+                "_id": "647cf22d8159bd",
+                "__v": 0
+            },
+            "token": "eyE3Y2YyMmQ4MTU5NDZhM24sj5LlwiBuDmqNVQ"
+        }
+
+### LogInUser
+* Logs in a User 
+description: Logs in a user
+    * URL:  '/users/login'
+    * method: POST
+
+            {
                 "email": 'email@example.com',
                 "password": 'password'
             }
+### Response
+- **Success**: Returns a message "Hello"
+- **Error**: Returns an error message if login fails.
 
-#### deleteUser
+        {
+            "message": "Hello"
+        }
 
-    deleteUser-'DELETE/:id'
-        description: deletes in a user 
+
+### logOutUser
+* Logs out a User 
+description: logs out a user 
+    * URL:  '/users/logout'
+    * method: POST
+#### Headers
+            |Key            |Value           |Description
+            |---------------|----------------|-----------|
+            |'Authorizaiton | 'Bearer<token>'|           |
+### Response
+- **Success**: Returns a message "Logout Successful"
+- **Error**: Returns an error message if logout fails.
+
+        {
+            "message": "Logout Successful"
+        }
+
+## updateUser
+* Updates a User 
+description: Updates a user 
+    * URL:  '/users/:id
+    * method: PUT
+
+        {
+                "name": "Upadated User",
+                "username": "Username",
+                "email": "email@example.com",
+                "password": "password"
+            }
+### Response
+- **Success**: Returns a message "Logout Successful"
+- **Error**: Returns an error message if logout fails.
+
+    {
+        "user": {
+            "_id": "64a6117cf26a3b4bd",
+            "name": "Upadated User",
+            "username": "New Username",
+            "email": " New email@example.com",
+            "password": "$2b$08YEPjddeqQK.1dblSJLM41SF/vE.",
+            "__v": 0
+        },
+        "message": "User Updated"
+    }
+
+## deleteUser
+* Deletes a User 
+description: Deletes a user 
+    * URL:  '/users/:id'
+    * method: DELETE
+
             {
                 "email": 'email@example.com',
                 "password": 'password'
             }
 
-#### Recipe Controllers
+- **Success**: Returns a message "Hello"
+- **Error**: Returns an error message if login fails.
+#### Response
+#### showUser
+#### showAllUsers
+## Recipe Routes
+
 #### CreateRecipe
+        * Creates a new Recipe 
+            * URL:  '/recipes'
+            * method: POST
+                {
+                    "title": "Chocolate Cake",
+                    "description": "this is a test recipe",
+                    "ingredients": "flour, sugar, cocoa powder, eggs, milk",
+                    "category": "dessert",
+                    "instructions": "1. Preheat the oven to... (example instructions)"
+                }
+#### Response
 
-    CreateRecipe-'POST/'
-        description: creates a new Recipe 
-            {
-                title: 'recipe name',
-                description: 'recipe description',
-                ingredients: 'ingredients',
-                user: user._id,
-                category: 'category',
-                instructions: 'instructions'
-            }
+- **Success**: Returns the newly created recipe object.
+- **Error**: Returns an error message if the creation fails.
 
+       response example:
+        {
+            "title": "Chocolate Cake",
+            "description": "this is a test recipe",
+            "ingredients": "flour, sugar, cocoa powder, eggs, milk",
+            "category": "dessert",
+            "instructions": "1. Preheat the oven to... (example instructions)",
+            "_id": "64a623caf22d815946a3b4ca",
+                "__v": 0
+        }
 
-## Routes
+// PUT Update a recipe
+// DELETE a recipe
+// GET Show an individual recipe
+// GET Show a list of recipes
+
 ## API-Documentation
 
 
