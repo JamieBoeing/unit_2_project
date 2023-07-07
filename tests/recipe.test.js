@@ -105,7 +105,7 @@ const callTokenUser = async () => {
         expect(response.body.instructions).toEqual(updateRecipe.instructions)
     })
 
-// // // DELETE delete recipe (works)
+ // DELETE delete recipe (works)
     test('This endpoint should delete a recipe', async () => {
         let { user, token } = await callTokenUser()
         
@@ -132,7 +132,7 @@ const callTokenUser = async () => {
         expect(deleteRecipe).tobeNull
     })
 
-// // // // GET show single recipe (works)
+// GET show single recipe (works)
     test('This endpoint should show a recipe', async () => {
         let { user, token } = await callTokenUser()
         const recipe = new Recipe({
@@ -153,7 +153,7 @@ const callTokenUser = async () => {
         expect(response.body).toBeInstanceOf(Object)
     })
 
-// // // GET show all recipes (works)
+// GET show all recipes (works)
     test('This endpoint should show all recipes', async () => {
         let { user, token } = await callTokenUser()
 

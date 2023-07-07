@@ -51,7 +51,8 @@ exports.logInUser = async (req, res) => {
 
 exports.logOutUser = async (req, res) => {
     try {
-        const token = req.header('Authorization').replace
+        req.user.isLoggedIn = false 
+        await req.user.save()
         res.json ({  message: 'Logout Successful' })
     } catch(error) {
         res.status(400).json({ message: error.message})

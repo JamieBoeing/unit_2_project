@@ -2,14 +2,15 @@
     
 
 ## Table of contents
-1. [#introduction](#introduction)
-2. [#prerequisites](#prerequisites)
-3. [#installation](#installation)
-4. [#usage](#usage)
-5. [#configuration](#usage)
-6. [#api-documentation](#api-documentation)
-7. [#testing](#testing)
-8. [#improvements](#improvements)
+* [#introduction](#introduction)
+* [#prerequisites](#prerequisites)
+* [#installation](#installation)
+* [#api-documentation](#api-documentation)
+* [#user-routes](#user-routes)
+* [#recipe-routes](#recipe-routes)
+* [#erd](#erd)
+* [#testing](#testing)
+* [#improvements](#improvements)
 
 # Introduction 
 This is an API for managing recipes using Mongoose, and Express
@@ -46,7 +47,7 @@ To install and run this application on your local machine you can follow these i
         code .
 * Add the following to the .env
 
-        mongodb+srv://username:<password>@cluster0.dtaf30w.mongodb.net/?retryWrites=true&w=majority
+        MONGO_URI=mongodb+srv://username:<password>@cluster0.dtaf30w.mongodb.net/?retryWrites=true&w=majority
         SECRET_KEY=secret
 
 * replace <password> with the connection string for your MongoDB database
@@ -57,8 +58,8 @@ To install and run this application on your local machine you can follow these i
 
     The api will be available at http://localhost:3000   
 
-# Usage
-## UserRoutes
+# API-Documentation
+## User Routes
 ### CreateUser
 * Creates a new User 
     * URL:  '/users'
@@ -75,17 +76,17 @@ To install and run this application on your local machine you can follow these i
 ### Response
  
 
-        {
-            "user": {
-                "name": "name",
-                "username": "username", 
-                "email": "email@email.com",
-                "password": 'password',
-                "_id": "647cf22d8159bd",
-                "__v": 0
-            },
-            "token": "eyE3Y2YyMmQ4MTU5NDZhM24sj5LlwiBuDmqNVQ"
-        }
+            {
+                "user": {
+                    "name": "name",
+                    "username": "username", 
+                    "email": "email@email.com",
+                    "password": 'password',
+                    "_id": "647cf22d8159bd",
+                    "__v": 0
+                },
+                "token": "eyE3Y2YyMmQ4MTU5NDZhM24sj5LlwiBuDmqNVQ"
+            }
 
 - **Success**: Returns the newly created user object.
 - **Error**: Returns an error message if the creation fails.
@@ -96,18 +97,23 @@ To install and run this application on your local machine you can follow these i
     * Method: POST
     * Authorization required: yes
 
+#### Headers
+            |Key            |Value           |Description
+            |---------------|-----------------|-----------|
+            |'Authorization'| 'Bearer <token>'|           |
 
-        {
-            "email": 'email@example.com',
-            "password": 'password'
-        }
+
+            {
+                "email": 'email@example.com',
+                "password": 'password'
+            }
 
 ### Response
 
 
-        {
-            "message": "Hello, Login Successful"
-        }
+            {
+                "message": "Hello, Login Successful"
+            }
 
 - **Success**: Returns a message "Hello, Login Successful"
 - **Error**: Returns an error message if login fails.
@@ -120,15 +126,15 @@ To install and run this application on your local machine you can follow these i
 
 #### Headers
             |Key            |Value           |Description
-            |---------------|----------------|-----------|
-            |'Authorizaiton | 'Bearer<token>'|           |
+            |---------------|-----------------|-----------|
+            |'Authorization'| 'Bearer <token>'|           |
 
 ### Response
 
 
-        {
-            "message": "Logout Successful"
-        }
+            {
+                "message": "Logout Successful"
+            }
 
 - **Success**: Returns a message "Logout Successful"
 - **Error**: Returns an error message if logout fails.
@@ -137,7 +143,13 @@ To install and run this application on your local machine you can follow these i
 * Updates a User 
     * URL:  '/users/:id
     * Method: PUT
-    * Authorization required: yes
+    * Authorization required: yes 
+
+#### Headers
+    |Key            |Value           |Description
+    |---------------|-----------------|-----------|
+    |'Authorization'| 'Bearer <token>'|           |
+
 
 
             {   
@@ -151,17 +163,17 @@ To install and run this application on your local machine you can follow these i
 ### Response
 
 
-        {
-            "user": {
-                "_id": "64a611cf26a3b4bd",
-                "name": "Upadated User",
-                "username": "New Username",
-                "email": " New email@example.com",
-                "password": "$2b$08YEPjddeqQK.1dblSJM41SF/vE.",
-                "__v": 0
-            },
-            "message": "User Updated"
-        }
+            {
+                "user": {
+                    "_id": "64a611cf26a3b4bd",
+                    "name": "Upadated User",
+                    "username": "New Username",
+                    "email": " New email@example.com",
+                    "password": "$2b$08YEPjddeqQK.1dblSJM41SF/vE.",
+                    "__v": 0
+                },
+                "message": "User Updated"
+            }
 
 - **Success**: Returns a message "User Updated"
 - **Error**: Returns an error message if update fails.
@@ -172,6 +184,11 @@ To install and run this application on your local machine you can follow these i
     * Method: DELETE
     * Authorization required: yes
 
+#### Headers
+            |Key            |Value           |Description
+            |---------------|-----------------|-----------|
+            |'Authorization'| 'Bearer <token>'|           |
+
             {
                 "email": 'email@example.com',
                 "password": 'password'
@@ -179,6 +196,10 @@ To install and run this application on your local machine you can follow these i
 
 
 #### Response
+
+            {
+                "message": "User Deleted"
+            }
 
 - **Success**: Returns a message "User Deleted"
 - **Error**: Returns an error message if it fails.
@@ -191,22 +212,22 @@ To install and run this application on your local machine you can follow these i
 
     #### Headers
             |Key            |Value           |Description
-            |---------------|----------------|-----------|
-            |'Authorizaiton | 'Bearer<token>'|           |
+            |---------------|-----------------|-----------|
+            |'Authorization'| 'Bearer <token>'|           |
 
 ### Response
 
 
-        {
-            "user": {
-                "_id": "64a6117cf263b4bd",
-                "name": "User",
-                "username": "Username",
-                "email": "email@example.com",
-                "password": "$2b$08YEPjddeqQK.1dSJLM41SF/vE.",
-                "__v": 0
+            {
+                "user": {
+                    "_id": "64a6117cf263b4bd",
+                    "name": "User",
+                    "username": "Username",
+                    "email": "email@example.com",
+                    "password": "$2b$08YEPjddeqQK.1dSJLM41SF/vE.",
+                    "__v": 0
+                }
             }
-        }
 
 - **Success**: Returns the user object being called by the id
 - **Error**: Returns an error message if it fails.
@@ -217,66 +238,77 @@ To install and run this application on your local machine you can follow these i
     * Method: GET
     * Authorization required: yes
 
+#### Headers
+            |Key            |Value           |Description
+            |---------------|-----------------|-----------|
+            |'Authorization'| 'Bearer <token>'|           |
+
 #### Response
 
-    {
-    "user": [
-        {
-            "_id": "649a341e6bfc34a0cd",
-            "name": "Jamie Boeing",
-            "username": "JamieBoeing123",
-            "email": "email@email.com",
-            "password": "$2b$08$idkJ6o25nEbjxwzphKUghAhCtro560Njr.vvyK",
-            "__v": 0
-        },
-        {
-            "_id": "64ae4611d03b80",
-            "name": "user1",
-            "username": "user1username",
-            "email": "user1email@email.com",
-            "password": "$2b$08$KfyR7WJmmW2G.sfySRqruGiEg8D5ubYku6W5Gr9q",
-            "__v": 0
-        },
-        {
-            "_id": "64a6117cf21b4bd",
-            "name": "Upadated User",
-            "username": "New Username",
-            "email": " New email@example.com",
-            "password": "$2b$08$DfwtNZSYEPjddjOzBwmcrOPnMRFE/6d1SF/vE.",
-            "__v": 0
-        }
-        ]
-    }
+            {
+            "user": [
+                {
+                    "_id": "649a341e6bfc34a0cd",
+                    "name": "Jamie Boeing",
+                    "username": "JamieBoeing123",
+                    "email": "email@email.com",
+                    "password": "$2b$08$idkJ6o25nEbjxwzphKUghAhCtro560Njr.vvyK",
+                    "__v": 0
+                },
+                {
+                    "_id": "64ae4611d03b80",
+                    "name": "user1",
+                    "username": "user1username",
+                    "email": "user1email@email.com",
+                    "password": "$2b$08$KfyR7WJmmW2G.sfySRqruGiEg8D5ubYku6W5Gr9q",
+                    "__v": 0
+                },
+                {
+                    "_id": "64a6117cf21b4bd",
+                    "name": "Upadated User",
+                    "username": "New Username",
+                    "email": " New email@example.com",
+                    "password": "$2b$08$DfwtNZSYEPjddjOzBwmcrOPnMRFE/6d1SF/vE.",
+                    "__v": 0
+                }
+                ]
+            }
 
-- **Success**: Returns a message "User Deleted"
-- **Error**: Returns an error message if login fails.
+- **Success**: Returns a message a list of all the user objects 
+- **Error**: Returns an error message if it fails.
 
 ## Recipe Routes
 
-## CreateRecipe
+### CreateRecipe
 * Creates a new Recipe 
     * URL:  '/recipes'
     * Method: POST
     * Authorization required: yes
 
-                {
-                    "title": "Chocolate Cake",
-                    "description": "this is a test recipe",
-                    "ingredients": "flour, sugar, cocoa powder, eggs, milk",
-                    "category": "dessert",
-                    "instructions": "1. Preheat the oven to... (example instructions)"
-                }
+#### Headers
+            |Key            |Value           |Description
+            |---------------|-----------------|-----------|
+            |'Authorization'| 'Bearer <token>'|           |
+
+            {
+                "title": "Chocolate Cake",
+                "description": "this is a test recipe",
+                "ingredients": "flour, sugar, cocoa powder, eggs, milk",
+                "category": "dessert",
+                "instructions": "1. Preheat the oven to... (example instructions)"
+            }
+
 #### Response
 
-        {
-            "title": "Chocolate Cake",
-            "description": "this is a test recipe",
-            "ingredients": "flour, sugar, cocoa powder, eggs, milk",
-            "category": "dessert",
-            "instructions": "1. Preheat the oven to... (example instructions)",
-            "_id": "64a623caf215946a3b4ca",
-                "__v": 0
-        }
+            {
+                "title": "Chocolate Cake",
+                "description": "this is a test recipe",
+                "ingredients": "flour, sugar, cocoa powder, eggs, milk",
+                "category": "dessert",
+                "instructions": "1. Preheat the oven to... (example instructions)",
+                "_id": "64a623caf215946a3b4ca",
+                    "__v": 0
+            }
 
 - **Success**: Returns the newly created recipe object.
 - **Error**: Returns an error message if the creation fails.
@@ -284,33 +316,41 @@ To install and run this application on your local machine you can follow these i
       
 
 
-## UpdateRecipes
+### UpdateRecipes
 * Updates a Recipe 
     * URL:  '/recipes/:id
     * Method: PUT
     * Authorization required: yes
 
-    {
-        "title": "Chocolate Lava Cake",
-        "description": "this is an updated recipe",
-        "ingredients": "flour, sugar, cocoa powder, eggs, milk",
-        "category": "dessert",
-        "instructions": "1. Preheat the oven to... (example instructions)"
-    }
+#### Headers
+            |Key            |Value           |Description
+            |---------------|-----------------|-----------|
+            |'Authorization'| 'Bearer <token>'|           |
+
+            {
+                "title": "Chocolate Lava Cake",
+                "description": "this is an updated recipe",
+                "ingredients": "flour, sugar, cocoa powder, eggs, milk",
+                "category": "dessert",
+                "instructions": "1. Preheat the oven to... (example instructions)"
+            }
 
     
 #### Response
-    {
-        "_id": "64a62af22d815946a3b4ca",
-        "title": "Chocolate Lava Cake",
-        "description": "this is an updated recipe",
-        "ingredients": "flour, sugar, cocoa powder, eggs, milk",
-        "category": "dessert",
-        "instructions": "1. Preheat the oven to... (example instructions)",
-        "__v": 0
-    }
+            {
+                "_id": "64a62af22d815946a3b4ca",
+                "title": "Chocolate Lava Cake",
+                "description": "this is an updated recipe",
+                "ingredients": "flour, sugar, cocoa powder, eggs, milk",
+                "category": "dessert",
+                "instructions": "1. Preheat the oven to... (example instructions)",
+                "__v": 0
+            }
 
-## DeleteRecipe
+- **Success**: Returns the newly updated recipe object.
+- **Error**: Returns an error message if the update fails.
+
+### DeleteRecipe
 * Deletes a Recipe 
     * URL:  '/recipes/:id
     * Method: DELETE
@@ -318,14 +358,18 @@ To install and run this application on your local machine you can follow these i
 
 #### Headers
             |Key            |Value           |Description
-            |---------------|----------------|-----------|
-            |'Authorizaiton | 'Bearer<token>'|           |
+            |---------------|-----------------|-----------|
+            |'Authorization'| 'Bearer <token>'|           |
 
 #### Response
-    {
-        "message": "Recipe Deleted"
-    }
-## ShowRecipe
+            {
+                "message": "Recipe Deleted"
+            }
+
+- **Success**: Returns a message "Recipe Deleted"
+- **Error**: Returns an error message if delete fails.
+
+### ShowRecipe
 * Shows a single Recipe 
     * URL:  '/recipes/:id
     * Method: GET
@@ -333,28 +377,30 @@ To install and run this application on your local machine you can follow these i
 
     #### Headers
             |Key            |Value           |Description
-            |---------------|----------------|-----------|
-            |'Authorizaiton | 'Bearer<token>'|           |
+            |---------------|-----------------|-----------|
+            |'Authorization'| 'Bearer <token>'|           |
 
 #### Response
 
-    {
-        "recipes": [
             {
-                "_id": "64a623caf22d816a3b4ca",
-                "title": "Chocolate Lava Cake",
-                "description": "this is an updated recipe",
-                "ingredients": "flour, sugar, cocoa powder, eggs, milk",
-                "category": "dessert",
-                "instructions": "1. Preheat the oven to... (example instructions)",
-                "__v": 0
-            }
-         ]  
-    } 
+                "recipes": [
+                    {
+                        "_id": "64a623caf22d816a3b4ca",
+                        "title": "Chocolate Lava Cake",
+                        "description": "this is an updated recipe",
+                        "ingredients": "flour, sugar, cocoa powder, eggs, milk",
+                        "category": "dessert",
+                        "instructions": "1. Preheat the oven to... (example instructions)",
+                        "__v": 0
+                    }
+                ]  
+            } 
         
 
+- **Success**: Returns a single recipe object called upon
+- **Error**: Returns an error message if it fails.
 
-## ShowAllRecipes
+### ShowAllRecipes
 * Shows a list of all Recipes
     * URL:  '/recipes'
     * Method: GET
@@ -362,101 +408,73 @@ To install and run this application on your local machine you can follow these i
 
 #### Headers
             |Key            |Value           |Description
-            |---------------|----------------|-----------|
-            |'Authorizaiton | 'Bearer<token>'|           |
+            |---------------|-----------------|-----------|
+            |'Authorization'| 'Bearer <token>'|           |
 
 #### Response
-        {
-        "recipes": [
-            {
-                "_id": "64a6232d815946a3b4ca",
-                "title": "Chocolate Lava Cake",
-                "description": "this is an updated recipe",
-                "ingredients": "flour, sugar, cocoa powder, eggs, milk",
-                "category": "dessert",
-                "instructions": "1. Preheat the oven to... (example instructions)",
-                "__v": 0
-            },
-            {
-                "_id": "64a74fa78c0bc4fc2259",
-                "title": "Gluten Free Lasagna",
-                "description": "Gluten free traditional style Lasagna",
-                "ingredients": "Gluten Free Lasagna noodles, marianara sauce, mozzerella cheese, ground beef or protein replacement like beyond beef, mushrooms",
-                "category": "dinner entree",
-                "instructions": "1. Preheat the oven to... (example instructions)",
-                "__v": 0
+                {
+                "recipes": [
+                    {
+                        "_id": "64a6232d815946a3b4ca",
+                        "title": "Chocolate Lava Cake",
+                        "description": "this is an updated recipe",
+                        "ingredients": "flour, sugar, cocoa powder, eggs, milk",
+                        "category": "dessert",
+                        "instructions": "1. Preheat the oven to... (example instructions)",
+                        "__v": 0
+                    },
+                    {
+                        "_id": "64a74fa78c0bc4fc2259",
+                        "title": "Gluten Free Lasagna",
+                        "description": "Gluten free traditional style Lasagna",
+                        "ingredients": "Gluten Free Lasagna noodles, marianara sauce, mozzerella cheese, ground beef or protein replacement like beyond beef, mushrooms",
+                        "category": "dinner entree",
+                        "instructions": "1. Preheat the oven to... (example instructions)",
+                        "__v": 0
+                    }
+                ]
             }
-        ]
-    }
 
-## API-Documentation
+- **Success**: Returns a list of all recipe objects 
+- **Error**: Returns an error message if it fails.
 
+
+### ERD
+[#erd](./images/erd.png)
 
 ## Testing
 ### Jest Test Results
-        - Test Suites: 2 passed, 2 total
-    Tests:       10 passed, 10 total
-    Snapshots:   0 total
-    Time:        1.118 s
-    Ran all test suites.
-    ::ffff:127.0.0.1 - - [30/Jun/2023:01:21:04 +0000] "POST /recipes HTTP/1.1" 200 224 "-" "-"
-    ::ffff:127.0.0.1 - - [30/Jun/2023:01:21:04 +0000] "PUT /recipes/649e2e00390278aa29790945 HTTP/1.1" 200 253 "-" "-"
-    ::ffff:127.0.0.1 - - [30/Jun/2023:01:21:04 +0000] "DELETE /recipes/649e2e00390278aa2979094c HTTP/1.1" 200 28 "-" "-"
-    ::ffff:127.0.0.1 - - [30/Jun/2023:01:21:04 +0000] "GET /recipes/649e2e00390278aa29790953 HTTP/1.1" 200 213 "-" "-"
-    ::ffff:127.0.0.1 - - [30/Jun/2023:01:21:04 +0000] "GET /recipes HTTP/1.1" 200 695 "-" "-"
+       Test Suites: 2 passed, 2 total
+Tests:       12 passed, 12 total
+Snapshots:   0 total
+Time:        1.403 s
+Ran all test suites.
+
+
 
 
 
 ### Artillery.yml Testing 
-        > recipes@1.0.0 load
-    > artillery run artillery.yml
+Tests two endpoints through Artillery.yml
 
-    Telemetry is on. Learn more: https://artillery.io/docs/resources/core/telemetry.html
-    Started phase 0, duration: 60s @ 20:54:04(-0500) 2023-06-29
-    Report @ 20:54:14(-0500) 2023-06-29
-    Elapsed time: 10 seconds
-    Scenarios launched:  199
-    Scenarios completed: 0
-    Requests completed:  0
-    Mean response/sec: 20
-    Response time (msec):
-        min: NaN
-        max: NaN
-        median: NaN
-        p95: NaN
-        p99: NaN
-    Errors:
-        ECONNREFUSED: 199
+    scenarios:
+    - name: "Create Recipe"
+    - flow:
+        - post:
+            url: "/recipes"        
+            json: 
+            title: "Testing a recipe"
+            description: "Testing a recipe"
+            completed: false
 
-    Report @ 20:54:24(-0500) 2023-06-29
-    Elapsed time: 20 seconds
-    Scenarios launched:  200
-    Scenarios completed: 0
-    Requests completed:  0
-    Mean response/sec: 20
-    Response time (msec):
-        min: NaN
-        max: NaN
-        median: NaN
-        p95: NaN
-        p99: NaN
-    Errors:
-        ECONNREFUSED: 200
-
-    Report @ 20:54:34(-0500) 2023-06-29
-    Elapsed time: 30 seconds
-    Scenarios launched:  200
-    Scenarios completed: 0
-    Requests completed:  0
-    Mean response/sec: 20
-    Response time (msec):
-        min: NaN
-        max: NaN
-        median: NaN
-        p95: NaN
-        p99: NaN
-    Errors:
-        ECONNREFUSED: 200
+    - name: "Get Users"
+    - flow:
+        - get:
+            url: "/users"     
+            json: 
+            title: "Testing Users"
+            description: "Testing a User"
+            completed: false
 
  
 ## Improvements 
