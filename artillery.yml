@@ -4,8 +4,8 @@ config:
     - duration: 60
       arrivalRate: 20
 scenarios:
-  - name: "Create Recipe"
-  - flow:
+  - name: "createRecipe"
+    flow:
     - post:
         url: "/recipes"        
         json: 
@@ -13,8 +13,8 @@ scenarios:
           description: "Testing a recipe"
           completed: false
 
-  - name: "Get Users"
-  - flow:
+  - name: "showAllUsers"
+    flow:
     - get:
         url: "/users"     
         json: 

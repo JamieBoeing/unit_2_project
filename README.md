@@ -16,7 +16,7 @@
 # Introduction 
 This is an API for managing recipes using Mongoose, and Express
 ## Wireframe
-[#wireframe] (./images/wireframe.png)
+[#wireframe](./images/wireframe.png)
 # Prerequisites 
 Before starting, make sure you have the following installed on your machine: 
 * [Node.js]: you can download and install from the official website: (https://nodejs.org)
@@ -58,7 +58,11 @@ To install and run this application on your local machine you can follow these i
 
         npm run dev
 
-    The api will be available at http://localhost:3000   
+    The api will be available at http://localhost:3000  
+
+* to start the program without using the dev mode type 
+    
+    npm run start
 
 # API-Documentation
 ## User Routes
@@ -453,11 +457,22 @@ Time:        1.403 s
 Ran all test suites.
 
 
+To run the testing suites type in the cmd line
+
+    npm run test
+
+
 
 
 
 ### Artillery.yml Testing 
 Tests two endpoints through Artillery.yml
+
+This test is a Negative test 
+    A negative test, is designed to validate how a system behaves under unexpected conditions. It intentionally triggers errors, edge cases, or invalid inputs to verify if the system handles them appropriately.
+    Negative testing helps uncover vulnerabilities, weaknesses, and potential issues in your system, allowing you to improve its robustness and resilience. It ensures that the system gracefully handles unexpected situations and provides appropriate error handling and feedback to users
+
+
 
     scenarios:
     - name: "Create Recipe"
@@ -478,6 +493,10 @@ Tests two endpoints through Artillery.yml
             description: "Testing a User"
             completed: false
 
+
+to run the Artillery Load testing type in the cmd line
+
+    npm run load
  
 ## Improvements 
  In the future an addition of a front-end user "view" for the application will be added. An Option where the user can add notes, photos, and share their recipes through other social networks will be linked, as well as a shopping cart for items needed to complete the recipes. Possibly an AI assistant will be added to help order needed items ahead of time for planned meals, and a calendar section. This calendar could be linked to family, and friends to share, update, and collect recipes. Rewards, tokens, and NFT's for possible expansions in the future. 
