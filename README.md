@@ -5,6 +5,7 @@
 * [#introduction](#introduction)
 * [#wireframe](#wireframe)
 * [#prerequisites](#prerequisites)
+* [#technologies-used](#technologies-used)
 * [#installation](#installation)
 * [#api-documentation](#api-documentation)
 * [#user-routes](#user-routes)
@@ -21,6 +22,24 @@ This is an API for managing recipes using Mongoose, and Express
 Before starting, make sure you have the following installed on your machine: 
 * [Node.js]: you can download and install from the official website: (https://nodejs.org)
 * MongoDB: you can download and install [MongoDB] from the official website: (https://wwww.mongodb.com)
+
+
+In a README-style format, the technologies listed for the given file would typically include:
+
+## Technologies Used
+* Node.js: A JavaScript runtime environment that executes server-side code.
+* Express.js: A fast and minimalist web application framework for Node.js.
+* MongoDB: A popular NoSQL database used for data storage and retrieval.
+* Mongoose: An elegant MongoDB object modeling for Node.js.
+* bcrypt: A library for hashing passwords and securing user credentials.
+* jsonwebtoken: A library for creating and validating JSON Web Tokens (JWT) for authentication and authorization.
+* dotenv: A zero-dependency module for loading environment variables from a .env file.
+* morgan: A middleware for logging HTTP requests in Node.js.
+* nodemon: A utility that automatically restarts the Node.js server during development for improved workflow.
+* Jest: A JavaScript testing framework with a focus on simplicity and performance.
+* Artillery: An open-source load testing tool used for performance testing and benchmarking.
+* mongodb-memory-server: A package that spins up an in-memory MongoDB server for testing purposes.
+* supertest: A library for testing Node.js HTTP servers and making assertions about HTTP responses.
 
 # Installation 
 To install and run this application on your local machine you can follow these instructions step-by-step
