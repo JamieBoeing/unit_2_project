@@ -24,7 +24,7 @@ Before starting, make sure you have the following installed on your machine:
 * MongoDB: you can download and install [MongoDB] from the official website: (https://wwww.mongodb.com)
 
 
-In a README-style format, the technologies listed for the given file would typically include:
+
 
 ## Technologies Used
 * Node.js: A JavaScript runtime environment that executes server-side code.
