@@ -3,6 +3,7 @@
 
 ## Table of contents
 * [#introduction](#introduction)
+* [#wireframe](#wireframe)
 * [#prerequisites](#prerequisites)
 * [#installation](#installation)
 * [#api-documentation](#api-documentation)
@@ -14,7 +15,8 @@
 
 # Introduction 
 This is an API for managing recipes using Mongoose, and Express
-
+## Wireframe
+[#wireframe] (./images/wireframe.png)
 # Prerequisites 
 Before starting, make sure you have the following installed on your machine: 
 * [Node.js]: you can download and install from the official website: (https://nodejs.org)
